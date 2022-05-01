@@ -7,12 +7,12 @@ body {
   justify-content: center;
   margin: 0;
   min-height: 100vh;
-
+  overflow: hidden;
 }
 
 .box{
-  height: 55px;
-  width: 65px;
+  height: 35px;
+  width: 45px;
 }
 
 .box-buttons{
@@ -21,15 +21,9 @@ body {
   width: 400px;
 }
 
-.center{
-  text-align: center;
-  padding-bottom: 10%;
-  padding-top: 30%;
-}
-
 .text{
   font-family: "OpenSans", sans-serif;
-  font-size: 2rem;
+  font-size:1.5rem;
 }
 
 .help{
@@ -53,4 +47,53 @@ body {
   margin-left: 20px;
   text-align: center;
   font-size: 1rem;
+}
+
+
+
+.button-64 {
+  align-items: center;
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-family: Phantomsans, sans-serif;
+  font-size: 5px;
+  justify-content: center;
+  line-height: 1em;
+  min-width: 20px;
+  padding: 3px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.button-64:active,
+.button-64:hover {
+  outline: 0;
+}
+
+.button-64 span {
+  background-color: rgb(5, 6, 45);
+  padding: 15px 20px;
+  border-radius: 6px;
+
+  transition: 300ms;
+}
+
+.button-64:hover span {
+  background: none;
+}
+
+@media (min-width: 768px) {
+  .button-64 {
+    font-size: 7px;
+    min-width: 20px;
+  }
 }
