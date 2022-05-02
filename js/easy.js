@@ -1,4 +1,5 @@
 const inputValue = document.querySelector('input');
+var numberOfTries = 0;
 var expression;
 
 $( document ).ready(function() {
@@ -147,6 +148,22 @@ function generateExpression() {
 }
 
 function evaluateAnswer(){
-    test = document.getElementById('textbox').value;
-    console.log("test: " + test +"\nexpression: " + expression +"\nanswer: "+eval(expression))
+  
+    var evaluateResult;
+    if(numberOfTries < 6){
+        test = document.getElementById('textbox').value;
+        if(test==expression){
+            evaluateResult = "Correct";
+            $("#textbox").attr("disabled", "disabled"); 
+            $(':button').prop('disabled', true); //
+        }
+        else
+            evaluateResult = "Wrong";
+            numberOfTries+=1;
+            document.getElementById('textbox').value = '';
+
+        console.log("Test Answer: " + test +"\nExpression: " + expression +"\nAnswer: "+eval(expression) + "\nEvaluation: "+evaluateResult + "\nNumber of tries: "+numberOfTries)
+    }
+    else 
+        console.log("No more tries left")
 }
