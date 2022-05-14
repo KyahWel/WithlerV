@@ -2,10 +2,10 @@ const inputValue = document.querySelector('input');
 var numberOfTries = 0;
 var expression;
 
-$( document ).ready(function() {
-   generateExpression()
-   console.log(expression)
-   $("#equals").text(eval(expression));
+$(document).ready(function () {
+    generateExpression()
+    console.log(expression)
+    $("#equals").text(eval(expression));
 });
 
 
@@ -13,157 +13,105 @@ function goToHome() {
     window.location.href = "../index.html"
 };
 
-function zero() {
-    var value = document.getElementById('textbox').value;
-    if (value.length < 5) {
-        $('#textbox').val($('#textbox').val() + '0');
-    }
+const boxes = document.querySelectorAll('.box');
+const buttons = document.querySelectorAll('button');
+const boxContainers = document.querySelectorAll('.box-container');
+
+const MAX_BOX = 5; //PALITAN KUNG ILANG BOX
+const MAX_CONTAINER = 6; //PALITAN KUNG ILANG CONTAINER
+
+let currentContainer = 0;
+let inputIndex = 0;
+var Answer = '';
+for (const button of buttons) {
+    button.onclick = buttonHandler;
 }
 
-function one() {
-    var value = document.getElementById('textbox').value;
-    if (value.length < 5) {
-        $('#textbox').val($('#textbox').val() + '1');
-    }
-}
+function buttonHandler(event) {
 
-function two() {
-    var value = document.getElementById('textbox').value;
-    if (value.length < 5) {
-        $('#textbox').val($('#textbox').val() + '2');
-    }
-}
+    const currentBox = boxContainers[currentContainer].children[inputIndex];
+    if (event.target.id !== 'delete-btn' && event.target.id !== 'enter-btn' && event.target.id !== 'reset-btn' && event.target.id !== 'help' && event.target.id !== 'close') {
 
-function three() {
-    var value = document.getElementById('textbox').value;
-    if (value.length < 5) {
-        $('#textbox').val($('#textbox').val() + '3');
-    }
-}
+        if (inputIndex < MAX_BOX && currentContainer < MAX_CONTAINER ) {
+            currentBox.children[0].textContent = event.target.textContent;
+            Answer += event.target.textContent
+            inputIndex++;
+        }
 
-function four() {
-    var value = document.getElementById('textbox').value;
-    if (value.length < 5) {
-        $('#textbox').val($('#textbox').val() + '4');
-    }
-}
+    } else if (event.target.id === 'delete-btn') {
+        currentBox.children[0].textContent = '';
+        if (inputIndex > -1) inputIndex--;
+        if (inputIndex < 0) inputIndex = 0;
 
-function five() {
-    var value = document.getElementById('textbox').value;
-    if (value.length < 5) {
-        $('#textbox').val($('#textbox').val() + '5');
-    }
-}
+    } else if (event.target.id === 'reset-btn') {
+        currentBox.children[0].textContent = '';
+        if (inputIndex > 0) inputIndex--;
+        if (inputIndex < 0) inputIndex = 0;
 
-function six() {
-    var value = document.getElementById('textbox').value;
-    if (value.length < 5) {
-        $('#textbox').val($('#textbox').val() + '6');
+    }else if (event.target.id === 'enter-btn') {
+        if (currentContainer < MAX_CONTAINER) {
+            currentContainer++;
+            console.log(currentContainer)
+            numberOfTries++;
+            var result = evaluateAnswer(Answer)
+            if (result == true) var evaluateResult = "Correct";
+            else var evaluateResult = "Wrong";
+    
+            console.log("Test Answer: " + Answer + "\nExpression: " + expression + "\nAnswer: " + eval(expression) + "\nEvaluation: " + evaluateResult + "\nNumber of tries: " + numberOfTries)
+            inputIndex = 0;
+            
+            
+            Answer = '';
+        }
+        else if(currentContainer > MAX_CONTAINER-1){
+            console.log("exit");
+        }
+       
     }
-}
+    if (boxContainers[currentContainer].lastElementChild.children[0].textContent !== '') {
+        document.getElementById('enter-btn').disabled = false;
+        
 
-function seven() {
-    var value = document.getElementById('textbox').value;
-    if (value.length < 5) {
-        $('#textbox').val($('#textbox').val() + '7');
-    }
-}
-
-function eight() {
-    var value = document.getElementById('textbox').value;
-    if (value.length < 5) {
-        $('#textbox').val($('#textbox').val() + '8');
-    }
-}
-
-function nine() {
-    var value = document.getElementById('textbox').value;
-    if (value.length < 5) {
-        $('#textbox').val($('#textbox').val() + '9');
-    }
-}
-
-function plus() {
-    var value = document.getElementById('textbox').value;
-    if (value.length < 5) {
-        $('#textbox').val($('#textbox').val() + '+');
-    }
-}
-
-function minus() {
-    var value = document.getElementById('textbox').value;
-    if (value.length < 5) {
-        $('#textbox').val($('#textbox').val() + '-');
-    }
-}
-
-function times() {
-    var value = document.getElementById('textbox').value;
-    if (value.length < 5) {
-        $('#textbox').val($('#textbox').val() + '*');
-    }
-}
-
-function divide() {
-    var value = document.getElementById('textbox').value;
-    if (value.length < 5) {
-        $('#textbox').val($('#textbox').val() + '/');
+    } else {
+        document.getElementById('enter-btn').disabled = true;
+        
     }
 }
 
 function reset() {
-    document.getElementById('textbox').value = '';
-}
+    $("#textbox").removeAttr("disabled");
+    $(':button').prop('disabled', false);
+    generateExpression()
+    console.log(expression)
+    $("#equals").text(eval(expression)); //
 
-function del() {
-    const value = inputValue.value;
-    inputValue.value = value.slice(0, value.length - 1);
 }
 
 function generateExpression() {
     let operations = /[*\/+-]/;
-    let withoutNumbers =/[^0-9]/
+    let withoutNumbers = /[^0-9]/
     let Digit_1 = new RandExp(/[1-9]/).gen();
     let Digit_2 = new RandExp(/[0-9*\/+-]/).gen();
-    let Digit_3 = new RandExp(/[0-9*\/+-]/).gen();
+    let Digit_3 = new RandExp(/[1-9*\/+-]/).gen();
 
-    if(operations.test(Digit_2) && operations.test(Digit_3))
-        Digit_3 = new RandExp(/[0-9]/).gen();  
-    else if(operations.test(Digit_2) && Digit_3==0)
-        Digit_3 = new RandExp(/[1-9]/).gen();  
-    
-    let Digit_4 = new RandExp(/[0-9*\/+-]/).gen();
-    if(operations.test(Digit_3) && operations.test(Digit_4))
-        Digit_4 = new RandExp(/[0-9]/).gen(); 
-    else if(operations.test(Digit_3) && Digit_4==0)
-        Digit_4 = new RandExp(/[1-9]/).gen();  
+    if (operations.test(Digit_2) && operations.test(Digit_3))
+        Digit_3 = new RandExp(/[1-9]/).gen();
 
-    let Digit_5 = new RandExp(/[0-9]/).gen();
+
+    let Digit_4 = new RandExp(/[1-9*\/+-]/).gen();
+    if (operations.test(Digit_3) && operations.test(Digit_4))
+        Digit_4 = new RandExp(/[1-9]/).gen();
+
+
+    let Digit_5 = new RandExp(/[1-9]/).gen();
     expression = Digit_1 + Digit_2 + Digit_3 + Digit_4 + Digit_5
 
-    if(eval(expression)%1 != 0 || eval(expression)<=0 || !withoutNumbers.test(expression) || eval(expression)>25 )
+    if (eval(expression) % 1 != 0 || eval(expression) <= 0 || !withoutNumbers.test(expression) || eval(expression) > 25)
         generateExpression()
     else
         return expression
 }
 
-function evaluateAnswer(){
-  
-    var evaluateResult;
-    if(numberOfTries < 6){
-        test = document.getElementById('textbox').value;
-        if(test==expression){
-            evaluateResult = "Correct";
-            $("#textbox").attr("disabled", "disabled"); 
-            $(':button').prop('disabled', true); //
-        }
-        else
-            evaluateResult = "Wrong";
-            numberOfTries+=1;
-            document.getElementById('textbox').value = '';
-
-        console.log("Test Answer: " + test +"\nExpression: " + expression +"\nAnswer: "+eval(expression) + "\nEvaluation: "+evaluateResult + "\nNumber of tries: "+numberOfTries)
-    }
-    else 
-        console.log("No more tries left")
+function evaluateAnswer(AnswerExp) {
+    return (AnswerExp == expression ? true : false)
 }
