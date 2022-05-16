@@ -28,64 +28,83 @@ for (const button of buttons) {
 }
 
 function buttonHandler(event) {
+    if (currentContainer < MAX_CONTAINER) {
+        var currentBox = boxContainers[currentContainer].children[inputIndex];
+        if (event.target.id !== 'delete-btn' && event.target.id !== 'enter-btn' && event.target.id !== 'reset-btn' && event.target.id !== 'help' && event.target.id !== 'close') {
 
-    const currentBox = boxContainers[currentContainer].children[inputIndex];
-    if (event.target.id !== 'delete-btn' && event.target.id !== 'enter-btn' && event.target.id !== 'reset-btn' && event.target.id !== 'help' && event.target.id !== 'close') {
+            if (inputIndex < MAX_BOX) {
+                if (inputIndex == -1) inputIndex = 0;
+                currentBox.children[0].textContent = event.target.textContent;
+                if(Answer.length < MAX_BOX) Answer += event.target.textContent
+                inputIndex++;
 
-        if (inputIndex < MAX_BOX && currentContainer < MAX_CONTAINER ) {
-            currentBox.children[0].textContent = event.target.textContent;
-            Answer += event.target.textContent
-            inputIndex++;
-        }
+                if (inputIndex == 5) inputIndex = 4;
 
-    } else if (event.target.id === 'delete-btn') {
-        currentBox.children[0].textContent = '';
-        if (inputIndex > -1) inputIndex--;
-        if (inputIndex < 0) inputIndex = 0;
+            }
+            console.log("Input index: "+inputIndex)
+            console.log("Answer: "+Answer)
+        } else if (event.target.id === 'delete-btn') {
 
-    } else if (event.target.id === 'reset-btn') {
-        currentBox.children[0].textContent = '';
-        if (inputIndex > 0) inputIndex--;
-        if (inputIndex < 0) inputIndex = 0;
+            if (inputIndex > 0 && inputIndex <= MAX_BOX-1) inputIndex--;
+            
+            if (inputIndex <= 0) inputIndex = 0;
+            if(inputIndex == MAX_BOX-1){
+                currentBox.children[0].textContent = '';
+                 currentBox = boxContainers[currentContainer].children[inputIndex];
+            }
+            else{     
+                currentBox = boxContainers[currentContainer].children[inputIndex];
+                currentBox.children[0].textContent = '';
+            }
+            
+           
+            
+            
+            Answer = Answer.slice(0, Answer.length - 1);
+            console.log("Delete index: "+inputIndex)
+            console.log("Answer: "+Answer)
+           
 
-    }else if (event.target.id === 'enter-btn') {
-        if (currentContainer < MAX_CONTAINER) {
-            currentContainer++;
-            console.log(currentContainer)
+        } else if (event.target.id === 'reset-btn') {
+
+
+        } else if (event.target.id === 'enter-btn') {
+
             numberOfTries++;
             var result = evaluateAnswer(Answer)
-            if (result == true) var evaluateResult = "Correct";
+            if (result == true){
+                var evaluateResult = "Correct";
+            }
             else var evaluateResult = "Wrong";
-    
+
             console.log("Test Answer: " + Answer + "\nExpression: " + expression + "\nAnswer: " + eval(expression) + "\nEvaluation: " + evaluateResult + "\nNumber of tries: " + numberOfTries)
             inputIndex = 0;
-            
-            
+
             Answer = '';
-        }
-        else if(currentContainer > MAX_CONTAINER-1){
-            console.log("exit");
-        }
-       
-    }
-    if (boxContainers[currentContainer].lastElementChild.children[0].textContent !== '') {
-        document.getElementById('enter-btn').disabled = false;
-        
+            currentContainer++;
+            console.log(currentContainer)
 
-    } else {
-        document.getElementById('enter-btn').disabled = true;
-        
+
+        }
+        else if (event.target.id === 'reset-btn') {
+            location.reload(true);
+        }
+
+        if (currentContainer < MAX_CONTAINER) {
+            if (boxContainers[currentContainer].lastElementChild.children[0].textContent !== '') {
+                document.getElementById('enter-btn').disabled = false;
+
+
+            } else {
+                document.getElementById('enter-btn').disabled = true;
+
+            }
+        }
+    } else if (currentContainer > MAX_CONTAINER - 1) {
+        console.log("exit");
     }
 }
-
-function reset() {
-    $("#textbox").removeAttr("disabled");
-    $(':button').prop('disabled', false);
-    generateExpression()
-    console.log(expression)
-    $("#equals").text(eval(expression)); //
-
-}
+ 
 
 function generateExpression() {
     let operations = /[*\/+-]/;
