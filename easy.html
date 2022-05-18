@@ -131,33 +131,33 @@
         
         <div class="flex-row centered ">
             
-            <button class="buttonDesign">1</button>
-            <button class="buttonDesign">2</button>
-            <button class="buttonDesign">3</button>
-            <button class="buttonDesign">4</button>
-            <button class="buttonDesign">5</button>
-            <button class="buttonDesign">6</button>
-            <button class="buttonDesign">7</button>
-            <button class="buttonDesign">8</button>
-            <button class="buttonDesign">9</button>
-            <button class="buttonDesign">0</button>
+            <button id="1" class="buttonDesign">1</button>
+            <button id="2" class="buttonDesign">2</button>
+            <button id="3" class="buttonDesign">3</button>
+            <button id="4" class="buttonDesign">4</button>
+            <button id="5" class="buttonDesign">5</button>
+            <button id="6" class="buttonDesign">6</button>
+            <button id="7" class="buttonDesign">7</button>
+            <button id="8" class="buttonDesign">8</button>
+            <button id="9" class="buttonDesign">9</button>
+            <button id="0" class="buttonDesign">0</button>
             
            <div class="text-center">
-                <button class="buttonDesign">+</button>
-                <button class="buttonDesign">-</button>
-                <button class="buttonDesign">*</button>
-                <button class="buttonDesign">/</button>
+                <button id="+" class="buttonDesign">+</button>
+                <button id="-" class="buttonDesign">-</button>
+                <button id="*" class="buttonDesign">*</button>
+                <button id="/" class="buttonDesign">/</button>
                 <button class="buttonDesignFunc" id="delete-btn">Delete</button>
 
                 <button class="buttonDesignFunc" id="enter-btn" disabled>Enter</button>
-                <button class="buttonDesignFunc" id="reset-btn">Reset</button>
+                <!-- <button class="buttonDesignFunc" id="reset-btn">Reset</button> -->
             </div>
 
         </div>
     </div>
 
     <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog center">
           <div class="modal-content">
            
             <div class="modal-body">
@@ -166,6 +166,50 @@
             </div>
             <div class="modal-footer">
                 <button type="button" id="close" class="btn btn-success" data-bs-dismiss="modal">Got It!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog center">
+          <div class="modal-content">
+           
+            <div class="modal-body">
+                <h2 class="modal-title" id="exampleModalLabel">Error:</h2>
+                Double check your expression, the answer should be <span id="answer"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="close" class="btn btn-success" data-bs-dismiss="modal">Got It!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="correctModal" tabindex="-1" aria-labelledby="correctModalLabel" aria-hidden="true">
+        <div class="modal-dialog center">
+          <div class="modal-content">
+           
+            <div class="modal-body">
+                <h2 class="modal-title" id="exampleModalLabel">Great Job!!</h2>
+                Tangina mo ang galing mo !! <br>
+                Current Streak: <span id="streak"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="close" class="btn btn-success" data-bs-dismiss="modal">Continue</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="failModal" tabindex="-1" aria-labelledby="failModalLabel" aria-hidden="true">
+        <div class="modal-dialog center">
+          <div class="modal-content">
+           
+            <div class="modal-body">
+                <h2 class="modal-title" id="exampleModalLabel">Try Again</h2>
+                <p>Insufficient chances available</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="close" class="btn btn-success" data-bs-dismiss="modal">Try Again</button>
             </div>
           </div>
         </div>
