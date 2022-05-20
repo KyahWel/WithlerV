@@ -4,7 +4,7 @@ var expression;
 
 $(document).ready(function () {
     generateExpression()
-    console.log(expression)
+    // console.log(expression)
     $("#equals").text(eval(expression));
 });
 
@@ -62,6 +62,7 @@ function buttonHandler(event) {
             const answerArray = Answer.split("");
             const expressionArray = expression.split("");
             numberOfTries++;
+            console.log(currentContainer)
             if (evaluateAnswer(Answer) == 1){
                const opt = "1234567890+-/*"
                for(let i = 0; i<MAX_BOX;i++){
@@ -81,17 +82,19 @@ function buttonHandler(event) {
                for (let z = 0 ; z < opt.length ; z++){
                 document.getElementById(opt[z]).disabled = true;
                }
-               currentContainer = MAX_CONTAINER;
+               
                document.getElementById('enter-btn').disabled = true;
-               document.getElementById('delete-btn').disabled = true;
-               document.getElementById('delete-btn').style.background = "#e25252"
+            
+
                streak++;
                var myModal = new bootstrap.Modal(document.getElementById('correctModal'),{
                     keyboard: false
                   })
                 myModal.toggle()
                 $("#streak").text(streak)
-                continueGame();
+                if( !$('#myModal').is(':visible')){
+                    continueGame();
+                }
             }
             else if(evaluateAnswer(Answer)== -1) {
                 var myModal = new bootstrap.Modal(document.getElementById('errorModal'),{
@@ -125,7 +128,7 @@ function buttonHandler(event) {
             }
         }
         else if (event.target.id === 'reset-btn') {
-            location.reload(true);
+            
         }
 
         if (currentContainer < MAX_CONTAINER) {
@@ -180,5 +183,23 @@ function evaluateAnswer(AnswerExp) {
 }
 
 function continueGame(){
+
+    Answer = "";
+    const opt = "1234567890+-/*"
+    for (let i = 0; i < MAX_CONTAINER; i++){
+        for (let x = 0; x < MAX_BOX; x++){
+            currentBox = boxContainers[i].children[x];
+            currentBox.children[0].textContent = '';
+            currentBox.style.backgroundColor = '#FFFFFF';
+        }
+    }
+    for (let z = 0 ; z < opt.length ; z++){
+        document.getElementById(opt[z]).disabled = false;
+        document.getElementById(opt[z]).style.background= "#768d87";
+    }
+    inputIndex = 0;
+    currentContainer = 0;
+    generateExpression();
+    $("#equals").text(eval(expression));
 
 }
