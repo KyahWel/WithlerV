@@ -4,20 +4,17 @@ var expression;
 
 $(document).ready(function () {
     generateExpression()
-    $("#equals").text(eval(expression));
     console.log(expression)
+    $("#equals").text(eval(expression));
 });
 
 
-function goToHome() {
-    window.location.href = "../index.html"
-};
 
 const boxes = document.querySelectorAll('.box');
 const buttons = document.querySelectorAll('button');
-const boxContainers = document.querySelectorAll('.box-containerEasy');
+const boxContainers = document.querySelectorAll('.box-containerHard');
 
-const MAX_BOX = 5; //PALITAN KUNG ILANG BOX
+const MAX_BOX = 8; //PALITAN KUNG ILANG BOX
 const MAX_CONTAINER = 6; //PALITAN KUNG ILANG CONTAINER
 
 let currentContainer = 0;
@@ -39,7 +36,7 @@ function buttonHandler(event) {
                 if(Answer.length < MAX_BOX) Answer += event.target.textContent
                 inputIndex++;
 
-                if (inputIndex == 5) inputIndex = 5;
+                if (inputIndex == 8) inputIndex = 8;
 
             }
            
@@ -66,7 +63,7 @@ function buttonHandler(event) {
               });
             numberOfTries++;
             if (evaluateAnswer(Answer) == 1){
-               const opt = "1234567890+-/*"
+               const opt = "1234567890+-/*()"
                for(let i = 0; i<MAX_BOX;i++){
                 currentBox = boxContainers[currentContainer].children[i];
                 currentBox.style.backgroundColor = "#3AA346";
@@ -154,11 +151,19 @@ function buttonHandler(event) {
 
 function generateExpression() {
 
-    let operations = new RandExp(/[+*/-]/).gen()
-   
-    expression = new RandExp('([1-9])((['+operations+'])([1-9])(['+operations+'])([1-9])|([0-9])([+*/-])([1-9])([0-9]))').gen();
+    let setA = '([(])([1-9])([/+*-])([1-9])([)])([/+*-])([1-9])([0-9])'
+    let setB = '([1-9])([/+*-])([1-9])([/+*-])([1-9])([/+*-])([1-9])([0-9])'
+    let setC = '([1-9])([0-9])([/+*-])([(])([1-9])([/+*-])([1-9])([)])'
+    let setD = '([(])([1-9])([/+*-])([1-9])([)])([/+*-])([1-9])([0-9])'
+    let setE = '([(])([1-9])([0-9])([/+*-])([1-9])([)])([/*])([1-9])'
+    let setF = '([(])([1-9])([/+*-])([1-9])([0-9])([)])([/*])([1-9])'
+    let setG = '([1-9])([0-9])([/+*-])([1-9])([0-9])([/+*-])([1-9])([0-9])'
+    let setH = '([1-9])([0-9])([0-9])([/+*-])([1-9])([/+*-])([1-9])([0-9])'
+    let setI = '([1-9])([0-9])([/+*-])([1-9])([/+*-])([1-9])([0-9])([0-9])'
     
-    if (eval(expression) % 1 != 0 || eval(expression) <= 0 || !withoutNumbers.test(expression) || eval(expression) > 50)
+    expression = new RandExp(setA+'|'+setB+'|'+setC+'|'+setD+'|'+setE +'|'+setF+'|'+setG+'|'+setH+'|'+setI).gen()
+
+    if (eval(expression) % 1 != 0 || eval(expression) <= 0  || eval(expression) > 500)
         generateExpression()
     else
         return expression

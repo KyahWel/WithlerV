@@ -4,20 +4,17 @@ var expression;
 
 $(document).ready(function () {
     generateExpression()
-    $("#equals").text(eval(expression));
     console.log(expression)
+    $("#equals").text(eval(expression));
 });
 
 
-function goToHome() {
-    window.location.href = "../index.html"
-};
 
 const boxes = document.querySelectorAll('.box');
 const buttons = document.querySelectorAll('button');
-const boxContainers = document.querySelectorAll('.box-containerEasy');
+const boxContainers = document.querySelectorAll('.box-containerNormal');
 
-const MAX_BOX = 5; //PALITAN KUNG ILANG BOX
+const MAX_BOX = 6; //PALITAN KUNG ILANG BOX
 const MAX_CONTAINER = 6; //PALITAN KUNG ILANG CONTAINER
 
 let currentContainer = 0;
@@ -39,7 +36,7 @@ function buttonHandler(event) {
                 if(Answer.length < MAX_BOX) Answer += event.target.textContent
                 inputIndex++;
 
-                if (inputIndex == 5) inputIndex = 5;
+                if (inputIndex == 6) inputIndex = 6;
 
             }
            
@@ -153,15 +150,16 @@ function buttonHandler(event) {
  
 
 function generateExpression() {
-
-    let operations = new RandExp(/[+*/-]/).gen()
-   
-    expression = new RandExp('([1-9])((['+operations+'])([1-9])(['+operations+'])([1-9])|([0-9])([+*/-])([1-9])([0-9]))').gen();
-    
-    if (eval(expression) % 1 != 0 || eval(expression) <= 0 || !withoutNumbers.test(expression) || eval(expression) > 50)
-        generateExpression()
-    else
-        return expression
+        let setA =  '([1-9])([/+*-])([1-9])([0-9])([/+*-])([1-9])'
+        let setB =  '([1-9])([0-9])([/+*-])([1-9])([/+*-])([1-9])'
+        let setC =  '([1-9])([0-9])([0-9])([/+*-])([1-9])([0-9])'
+        let setD =  '([1-9])([/+*-])([1-9])([/+*-])([1-9])([0-9])'
+        expression =  new RandExp(setA+'|'+setB+'|'+setC+'|'+setD).gen()
+        
+        if (eval(expression) % 1 != 0 || eval(expression) <= 0 || eval(expression) > 150)
+            generateExpression()
+        else
+            return expression
 }
 
 function evaluateAnswer(AnswerExp) {

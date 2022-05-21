@@ -22,13 +22,29 @@ body {
 }
 
 
-.box-container{
+.box-containerEasy{
   width: 300px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 10px;
 }
+
+.box-containerNormal{
+	width: 350px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 10px;
+  }
+
+  .box-containerHard{
+	width: 450px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 10px;
+  }
 
 .helpBtn{
   height: auto;
