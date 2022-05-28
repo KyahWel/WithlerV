@@ -215,15 +215,37 @@
     </div>
 
     <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
-        <div class="modal-dialog center">
-          <div class="modal-content">
+        <div class="modal-dialog center modal-size">
+          <div class="modal-content bg-black">
            
             <div class="modal-body">
-                <h2 class="modal-title" id="exampleModalLabel">Game Mechanics</h2>
-                Lagay mo dito yung rules
-            </div>
-            <div class="modal-footer">
-                <button type="button" id="close" class="btn btn-success" data-bs-dismiss="modal">Got It!</button>
+                <div class="d-flex justify-content-end">
+                    <button type="button" id="close" class="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button>    
+                </div>
+               
+                <div id="gameRulesCarosel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#gameRulesCarosel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#gameRulesCarosel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    </div>
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="/images/guide1.png" class="d-block w-100">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="/images/guide2.png" class="d-block w-100" alt="...">
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#gameRulesCarosel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#gameRulesCarosel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                    </div>
+                  </div>
+                  
             </div>
           </div>
         </div>
