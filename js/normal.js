@@ -28,7 +28,7 @@ for (const button of buttons) {
 function buttonHandler(event) {
     if (currentContainer < MAX_CONTAINER) {
         var currentBox = boxContainers[currentContainer].children[inputIndex];
-        if (event.target.id !== 'delete-btn' && event.target.id !== 'enter-btn' && event.target.id !== 'reset-btn' && event.target.id !== 'help' && event.target.id !== 'close') {
+        if (event.target.id !== '' && event.target.id !== 'delete-btn' && event.target.id !== 'enter-btn' && event.target.id !== 'reset-btn' && event.target.id !== 'help' && event.target.id !== 'close') {
 
             if (inputIndex < MAX_BOX) {
                 if (inputIndex == -1) inputIndex = 0;
