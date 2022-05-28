@@ -5,7 +5,7 @@ var expression;
 $(document).ready(function () {
     generateExpression()
     $("#equals").text(eval(expression));
-    console.log(expression)
+    
 });
 
 
@@ -31,8 +31,8 @@ for (const button of buttons) {
 function buttonHandler(event) {
     if (currentContainer < MAX_CONTAINER) {
         var currentBox = boxContainers[currentContainer].children[inputIndex];
-        if (event.target.id !== 'delete-btn' && event.target.id !== 'enter-btn' && event.target.id !== 'reset-btn' && event.target.id !== 'help' && event.target.id !== 'close') {
-
+        if (event.target.id !== '' && event.target.id !== 'enter-btn' && event.target.id !== 'reset-btn' && event.target.id !== 'help' && event.target.id !== 'close') {
+            console.log(event.target.id)
             if (inputIndex < MAX_BOX) {
                 if (inputIndex == -1) inputIndex = 0;
                 currentBox.children[0].textContent = event.target.textContent;
@@ -158,7 +158,7 @@ function generateExpression() {
    
     expression = new RandExp('([1-9])((['+operations+'])([1-9])(['+operations+'])([1-9])|([0-9])([+*/-])([1-9])([0-9]))').gen();
     
-    if (eval(expression) % 1 != 0 || eval(expression) <= 0 || !withoutNumbers.test(expression) || eval(expression) > 50)
+    if (eval(expression) % 1 != 0 || eval(expression) <= 0 ||  eval(expression) > 50)
         generateExpression()
     else
         return expression
