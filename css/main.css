@@ -13,6 +13,28 @@ body {
   margin: 0 auto;
 }
 
+.buttonDesignSettings{
+	border-radius: 100%;
+	border: 10px;
+	border-color: #000000;
+	font-size:16px;
+	background-color: white;
+	margin-top: 7px;
+	margin-left: 4px;
+	position:absolute;
+	
+  }
+ 
+  .buttonDesignHelp{
+	border-radius: 100%;
+	border: 10px;
+	border-color: #000000;
+	font-size:16px;
+	background-color: white;
+
+	margin-left: auto;
+  }
+  
 
 .box{
   border: 1px solid black;

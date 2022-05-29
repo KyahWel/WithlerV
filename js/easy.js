@@ -5,6 +5,7 @@ var expression;
 $(document).ready(function () {
     generateExpression()
     console.log(expression)
+    $(".easyDiff").css("background-color","#6c7c7c");
     $("#equals").text(eval(expression));
     
 });
@@ -33,7 +34,7 @@ function buttonHandler(event) {
     if (currentContainer < MAX_CONTAINER) {
         var currentBox = boxContainers[currentContainer].children[inputIndex];
         if (event.target.id !== '' && event.target.id !== 'delete-btn' && event.target.id !== 'enter-btn' && event.target.id !== 'reset-btn' && event.target.id !== 'help' && event.target.id !== 'close') {
-            console.log(event.target.id)
+            console.log(event.target.id) 
             if (inputIndex < MAX_BOX) {
                 if (inputIndex == -1) inputIndex = 0;
                 currentBox.children[0].textContent = event.target.textContent;
@@ -200,6 +201,15 @@ function continueGame(){
     console.log(expression)
 
 }
+
+$('.normalDiff').click(function(){
+    location.replace('normal.html')
+});
+
+$('.hardDiff').click(function(){
+    location.replace('hard.html')
+});
+
 
 
 

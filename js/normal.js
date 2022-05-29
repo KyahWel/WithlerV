@@ -5,6 +5,7 @@ var expression;
 $(document).ready(function () {
     generateExpression()
     console.log(expression)
+    $(".normalDiff").css("background-color","#6c7c7c");
     $("#equals").text(eval(expression));
 });
 
@@ -197,6 +198,14 @@ function continueGame(){
     console.log(expression)
 
 }
+
+$('.easyDiff').click(function(){
+    location.replace('easy.html')
+});
+
+$('.hardDiff').click(function(){
+    location.replace('hard.html')
+});
 
 
 

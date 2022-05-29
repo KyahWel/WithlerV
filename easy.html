@@ -13,13 +13,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    
 </head>
 
 <body>
     <div class="container d-flex flex-column justify-content-center">
         <div class="flex-row text-center centered">
-            <h4><button id="help"class="helpBtn" data-bs-toggle="modal" data-bs-target="#helpModal">?</button> Find the hidden calculation that is equal to <span id="equals"> </span></h4>
-            
+            <h3><button id="help"class="buttonDesignHelp" data-bs-toggle="modal" data-bs-target="#helpModal">
+                <i class="fas fa-question"></i>
+            </button> 
+                Guess the math equation!
+               
+                <button class="buttonDesignSettings" type="button" data-bs-toggle="modal" data-bs-target="#settingsModal">
+                    <i class="fa fa-cog"></i></button>
+            </h3>
+            <h5> Find the hidden calculation that is equal to <span id="equals"> </span></h5>
             <div class="box-containerEasy centered">
                 <div class="box">
                     <span></span>
@@ -229,8 +237,9 @@
           <div class="modal-content">
            
             <div class="modal-body">
-                <h2 class="modal-title" id="exampleModalLabel">Try Again</h2>
+                <h2 class="modal-title" id="exampleModalLabel">Game Over</h2>
                 <p>Insufficient chances available</p>
+                <p>Correct Answer: <span id="correct_ans"></span></p>
             </div>
             <div class="modal-footer">
                 <button type="button" id="close" class="btn btn-success" data-bs-dismiss="modal">Try Again</button>
@@ -238,6 +247,25 @@
           </div>
         </div>
       </div>
+
+      <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+        <div class="modal-dialog center">
+          <div class="modal-content">
+           
+            <div class="modal-body">
+                <h2 class="modal-title">Game Settings:</h2>
+                Game Difficulty <br>
+                <button type="button" class="btn btn-primary m-2 easyDiff" >Easy Mode</button><br>
+                <button type="button" class="btn btn-primary m-2 normalDiff" >Normal Mode</button><br>
+                <button type="button" class="btn btn-primary m-2 hardDiff">Hard Mode</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="close" class="btn btn-success" data-bs-dismiss="modal">Continue</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
 
 

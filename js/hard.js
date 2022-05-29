@@ -5,6 +5,7 @@ var expression;
 $(document).ready(function () {
     generateExpression()
     console.log(expression)
+    $(".hardDiff").css("background-color","#6c7c7c")
     $("#equals").text(eval(expression));
 });
 
@@ -204,6 +205,14 @@ function continueGame(){
     console.log(expression)
 
 }
+
+$('.easyDiff').click(function(){
+    location.replace('easy.html')
+});
+
+$('.normalDiff').click(function(){
+    location.replace('normal.html')
+});
 
 
 

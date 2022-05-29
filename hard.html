@@ -18,7 +18,15 @@
 <body>
     <div class="container d-flex flex-column justify-content-center">
         <div class="flex-row text-center centered">
-            <h4><button id="help"class="helpBtn" data-bs-toggle="modal" data-bs-target="#helpModal">?</button> Find the hidden calculation that is equal to <span id="equals"> </span></h4>
+            <h3><button id="help"class="buttonDesignHelp" data-bs-toggle="modal" data-bs-target="#helpModal">
+                <i class="fas fa-question"></i>
+            </button> 
+                Guess the math equation!
+               
+                <button class="buttonDesignSettings" type="button" data-bs-toggle="modal" data-bs-target="#settingsModal">
+                    <i class="fa fa-cog"></i></button>
+            </h3>
+            <h5> Find the hidden calculation that is equal to <span id="equals"> </span></h5>
             
             <div class="box-containerHard centered">
                 <div class="box">
@@ -230,10 +238,10 @@
                     </div>
                     <div class="carousel-inner">
                       <div class="carousel-item active">
-                        <img src="/images/guide1.png" class="d-block w-100">
+                        <img src="images/guide1.png" class="d-block w-100">
                       </div>
                       <div class="carousel-item">
-                        <img src="/images/guide2.png" class="d-block w-100" alt="...">
+                        <img src="images/guide2.png" class="d-block w-100" alt="...">
                       </div>
                       <button class="carousel-control-prev" type="button" data-bs-target="#gameRulesCarosel" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -295,6 +303,23 @@
         </div>
       </div>
 
+      <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+        <div class="modal-dialog center">
+          <div class="modal-content">
+           
+            <div class="modal-body">
+                <h2 class="modal-title">Game Settings:</h2>
+                Game Difficulty <br>
+                <button type="button" class="btn btn-primary m-2 easyDiff" >Easy Mode</button><br>
+                <button type="button" class="btn btn-primary m-2 normalDiff" >Normal Mode</button><br>
+                <button type="button" class="btn btn-primary m-2 hardDiff">Hard Mode</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="close" class="btn btn-success" data-bs-dismiss="modal">Continue</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
