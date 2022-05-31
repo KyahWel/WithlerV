@@ -93,15 +93,17 @@
         }
         document.addEventListener('click', clickEffect);
 
+        // On index.html load
         function fadein() {
             const target = document.getElementById("fader");
-            function fadeinEvent(){
+
+            function fadeinEvent() {
                 target.style.opacity = '100'
             }
             target.addEventListener('mouseover', fadeinEvent);
             setTimeout(function () {
                 target.removeEventListener('mouseover', fadeinEvent)
-            }, 2500);
+            }, 500);
         }
 
         function goToEasy() {
@@ -113,11 +115,19 @@
         };
 
         function goToNormal() {
-            location.replace("normal.html")
+            const target = document.getElementById("fader");
+            target.addEventListener('click', fadeEasy => target.style.opacity = '0');
+            setTimeout(function () {
+                location.replace("normal.html")
+            }, 2500);
         };
 
         function goToHard() {
-            location.replace("hard.html")
+            const target = document.getElementById("fader");
+            target.addEventListener('click', fadeEasy => target.style.opacity = '0');
+            setTimeout(function () {
+                location.replace("hard.html")
+            }, 2500);
         };
     </script>
     <script src="js/cursor.js"></script>
