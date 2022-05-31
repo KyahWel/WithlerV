@@ -1,5 +1,12 @@
+*{
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
 :root {
-    --backgroundColor: rgba(246, 241, 209);
     --colorShadeA: rgb(106, 163, 137);
     --colorShadeB: rgb(121, 186, 156);
     --colorShadeC: rgb(150, 232, 195);
@@ -7,14 +14,6 @@
     --colorShadeE: rgb(205, 255, 232);
   }
   
-  @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
-  * {
-    box-sizing: border-box;
-  }
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
   body {
     font-family: "OpenSans", sans-serif;
     font-size: 1rem;
@@ -24,67 +23,207 @@
     justify-content: center;
     margin: 0;
     min-height: 100vh;
-    background: var(--backgroundColor);
+    background-color: #000115 !important;
+    overflow: hidden;
   }
-  button {
+
+  /* Para sa mga pindutan */
+  a{
     position: relative;
-    display: inline-block;
-    cursor: pointer;
-    outline: none;
-    border: 0;
-    vertical-align: middle;
-    text-decoration: none;
-    font-size: 1.5rem;
-    color: var(--colorShadeA);
-    font-weight: 700;
+    padding: 15px 25px;
+    margin: 0 30px;
+    color: #21ebff !important;
+    text-decoration: none !important; 
     text-transform: uppercase;
-    font-family: inherit;
+    letter-spacing: 2px;
+    font-size: 20px;
+    overflow: hidden;
+    transition: 0.5s;
+    text-align: center;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(228, 228, 228, 0.2));
+    cursor: none;
   }
-  
-  button.big-button {
-    padding: 1em 2em;
-    border: 2px solid var(--colorShadeA);
-    border-radius: 1em;
-    background: var(--colorShadeE);
-    transform-style: preserve-3d;
-    transition: all 175ms cubic-bezier(0, 0, 1, 1);
+
+  a:nth-child(1)
+  {
+    filter: hue-rotate(120deg);
   }
-  button.big-button::before {
-    position: absolute;
-    content: "";
+
+  a:nth-child(3)
+  {
+    filter: hue-rotate(190deg);
+  }
+
+  a:hover{
+    background: #21ebff;
+    color: #111 !important;
+    box-shadow: 0 0 50px #21ebff;
+    transition-delay: 0.5s;
+  }
+
+  a:hover:before{
     width: 100%;
     height: 100%;
+  }
+
+  a:hover:after{
+    width: 100%;
+    height: 100%;
+    transition-delay: 0s;
+  }
+
+  a:before{
+    content: '';
+    position: absolute;
     top: 0;
     left: 0;
-    right: 0;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #21ebff;
+    border-left: 2px solid #21ebff;
+    transition: 0.5s;
+  }
+
+  a:after{
+    content: '';
+    position: absolute;
     bottom: 0;
-    background: var(--colorShadeC);
-    border-radius: inherit;
-    box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.75em 0 0 var(--colorShadeA);
-    transform: translate3d(0, 0.75em, -1em);
-    transition: all 175ms cubic-bezier(0, 0, 1, 1);
+    right: 0;
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid #21ebff;
+    border-right: 2px solid #21ebff;
+    transition: 0.5s;
   }
-  
-  button.big-button:hover {
-    background: var(--colorShadeD);
-    transform: translate(0, 0.375em);
-  }
-  
-  button.big-button:hover::before {
-    transform: translate3d(0, 0.75em, -1em);
-  }
-  
-  button.big-button:active {
-    transform: translate(0em, 0.75em);
-  }
-  
-  button.big-button:active::before {
-    transform: translate3d(0, 0, -1em);
-  
-    box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.25em 0 0 var(--colorShadeB);
-  }
+
+  /* Main UI */
 
   h1{
     font-family: 'Montserrat', sans-serif;
+    color: white;
+    z-index: 5;
   }
-  
+
+  h4{
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    z-index: 5;
+  }
+
+  /* Cursor */
+
+  .cursor{
+    z-index: 999;
+    position: fixed;
+    background: #2696e8;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 20px #2696e8,
+                0 0 60px #2696e8,
+                0 0 100px #2696e8;
+                animation: colors 5s infinite;
+  }
+
+  @keyframes colors{
+    0%{
+      filter: hue-rotate(0deg);
+    }
+    100%{
+      filter: hue-rotate(360deg);
+    }
+  }
+
+  .cursor:before{
+    content: '';
+    position: absolute;
+    background: #2696e8;
+    width: 50px;
+    height: 50px;
+    opacity: 0.2;
+    transform: translate(-30%, -30%);
+    border-radius: 50%;
+  }
+
+div.clickEffect{
+  position: fixed;
+  box-sizing: border-box;
+  border-style: solid;
+  filter: hue-rotate(360deg);
+  border-radius: 50%;
+  animation: clickEffect 0.4s ease-out;
+  z-index:99999;
+}
+
+@keyframes clickEffect{
+  0%{
+    opacity: 1;
+    width: 0.5em; height: 0.5em;
+    margin: 0.225em;
+    border-width: 0.5em;
+
+  }
+  100%{
+    opacity: 0.2;
+    width: 15em; height:15em;
+    margin: -6.9em;
+    border-width: 0.03em;
+    color: #2696e8;
+  }
+}
+
+.trail{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #2696e8;
+  position: fixed;
+  animation: come 1s linear forwards;
+}
+
+@keyframes come{
+  0%{
+    transform: scale(0);
+    filter: hue-rotate(0deg);
+  }
+  10%{
+    transform: scale(1) translateY(0px);
+    opacity: 1;
+  }
+  100%{
+    transform: scale(0) translateY(150px);
+    opacity: 0;
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* Background Video */
+
+.headervideo{
+  height:100vh;
+  background-color: rgba(255, 0, 0, 0.596) !important;
+}
+
+.video-background{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -2;
+}
+
+.solidblack{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  opacity: 0.75;
+  z-index: -1;
+}

@@ -13,18 +13,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
-    
+
 </head>
 
 <body>
     <div class="container d-flex flex-column justify-content-center">
         <div class="flex-row text-center centered">
-            <h3><button id="help"class="buttonDesignHelp" data-bs-toggle="modal" data-bs-target="#helpModal">
-                <i class="fas fa-question"></i>
-            </button> 
+            <h3><button id="help" class="buttonDesignHelp" data-bs-toggle="modal" data-bs-target="#helpModal">
+                    <i class="fas fa-question"></i>
+                </button>
                 Guess the math equation!
-               
-                <button class="buttonDesignSettings" type="button" data-bs-toggle="modal" data-bs-target="#settingsModal">
+
+                <button class="buttonDesignSettings" type="button" data-bs-toggle="modal"
+                    data-bs-target="#settingsModal">
                     <i class="fa fa-cog"></i></button>
             </h3>
             <h5> Find the hidden calculation that is equal to <span id="equals"> </span></h5>
@@ -136,9 +137,9 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="flex-row centered buttons">
-            
+
             <button id="1" class="buttonDesign">1</button>
             <button id="2" class="buttonDesign">2</button>
             <button id="3" class="buttonDesign">3</button>
@@ -149,8 +150,8 @@
             <button id="8" class="buttonDesign">8</button>
             <button id="9" class="buttonDesign">9</button>
             <button id="0" class="buttonDesign">0</button>
-            
-           <div class="text-center">
+
+            <div class="text-center">
                 <button id="+" class="buttonDesign">+</button>
                 <button id="-" class="buttonDesign">-</button>
                 <button id="*" class="buttonDesign">*</button>
@@ -158,7 +159,7 @@
                 <button class="buttonDesignFunc" id="delete-btn">Delete</button>
 
                 <button class="buttonDesignFunc" id="enter-btn" disabled>Enter</button>
-               
+
             </div>
 
         </div>
@@ -166,105 +167,110 @@
 
     <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
         <div class="modal-dialog center modal-size">
-          <div class="modal-content bg-black">
-           
-            <div class="modal-body">
-                <div class="d-flex justify-content-end">
-                    <button type="button" id="close" class="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button>    
+            <div class="modal-content bg-black">
+
+                <div class="modal-body">
+                    <div class="d-flex justify-content-end">
+                        <button type="button" id="close" class="btn-close bg-danger" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+
+                    <div id="gameRulesCarosel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#gameRulesCarosel" data-bs-slide-to="0" class="active"
+                                aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#gameRulesCarosel" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="images/guide1.png" class="d-block w-100">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/guide2.png" class="d-block w-100" alt="...">
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#gameRulesCarosel"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#gameRulesCarosel"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
-               
-                <div id="gameRulesCarosel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                      <button type="button" data-bs-target="#gameRulesCarosel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                      <button type="button" data-bs-target="#gameRulesCarosel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    </div>
-                    <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <img src="images/guide1.png" class="d-block w-100">
-                      </div>
-                      <div class="carousel-item">
-                        <img src="images/guide2.png" class="d-block w-100" alt="...">
-                      </div>
-                      <button class="carousel-control-prev" type="button" data-bs-target="#gameRulesCarosel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                      </button>
-                      <button class="carousel-control-next" type="button" data-bs-target="#gameRulesCarosel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                      </button>
-                    </div>
-                  </div>
-                  
             </div>
-          </div>
         </div>
-      </div>
+    </div>
 
-      <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
         <div class="modal-dialog center">
-          <div class="modal-content">
-           
-            <div class="modal-body">
-                <h2 class="modal-title" id="exampleModalLabel">Error:</h2>
-                Double check your expression, the answer should be <span id="answer"></span>
-            </div>
-            <div class="modal-footer">
-                <button type="button" id="close" class="btn btn-success" data-bs-dismiss="modal">Got It!</button>
-            </div>
-          </div>
-        </div>
-      </div>
+            <div class="modal-content">
 
-      <div class="modal fade" id="correctModal" tabindex="-1" aria-labelledby="correctModalLabel" aria-hidden="true">
-        <div class="modal-dialog center">
-          <div class="modal-content">
-           
-            <div class="modal-body">
-                <h2 class="modal-title" id="exampleModalLabel">Great Job!!</h2>
-                Tangina mo ang galing mo !! <br>
-                Current Streak: <span id="streak"></span>
+                <div class="modal-body">
+                    <h2 class="modal-title" id="exampleModalLabel">Error:</h2>
+                    Double check your expression, the answer should be <span id="answer"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="close" class="btn btn-success" data-bs-dismiss="modal">Got It!</button>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button"  id="close" class="btn btn-success" data-bs-dismiss="modal">Continue</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
 
-      <div class="modal fade" id="failModal" tabindex="-1" aria-labelledby="failModalLabel" aria-hidden="true">
+    <div class="modal fade" id="correctModal" tabindex="-1" aria-labelledby="correctModalLabel" aria-hidden="true">
         <div class="modal-dialog center">
-          <div class="modal-content">
-           
-            <div class="modal-body">
-                <h2 class="modal-title" id="exampleModalLabel">Game Over</h2>
-                <p>Insufficient chances available</p>
-                <p>Correct Answer: <span id="correct_ans"></span></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" id="close" class="btn btn-success" data-bs-dismiss="modal">Try Again</button>
-            </div>
-          </div>
-        </div>
-      </div>
+            <div class="modal-content">
 
-      <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
-        <div class="modal-dialog center">
-          <div class="modal-content">
-           
-            <div class="modal-body">
-                <h2 class="modal-title">Game Settings:</h2>
-                Game Difficulty <br>
-                <button type="button" class="btn btn-primary m-2 easyDiff" >Easy Mode</button><br>
-                <button type="button" class="btn btn-primary m-2 normalDiff" >Normal Mode</button><br>
-                <button type="button" class="btn btn-primary m-2 hardDiff">Hard Mode</button>
+                <div class="modal-body">
+                    <h2 class="modal-title" id="exampleModalLabel">Great Job!!</h2>
+                    Tangina mo ang galing mo !! <br>
+                    Current Streak: <span id="streak"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="close" class="btn btn-success" data-bs-dismiss="modal">Continue</button>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" id="close" class="btn btn-success" data-bs-dismiss="modal">Continue</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
+
+    <div class="modal fade" id="failModal" tabindex="-1" aria-labelledby="failModalLabel" aria-hidden="true">
+        <div class="modal-dialog center">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <h2 class="modal-title" id="exampleModalLabel">Game Over</h2>
+                    <p>Insufficient chances available</p>
+                    <p>Correct Answer: <span id="correct_ans"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="close" class="btn btn-success" data-bs-dismiss="modal">Try Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+        <div class="modal-dialog center">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <h2 class="modal-title">Game Settings:</h2>
+                    Game Difficulty <br>
+                    <button type="button" class="btn btn-primary m-2 easyDiff">Easy Mode</button><br>
+                    <button type="button" class="btn btn-primary m-2 normalDiff">Normal Mode</button><br>
+                    <button type="button" class="btn btn-primary m-2 hardDiff">Hard Mode</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="close" class="btn btn-success" data-bs-dismiss="modal">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
