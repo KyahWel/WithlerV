@@ -18,6 +18,7 @@ function goToHome() {
 const boxes = document.querySelectorAll('.box');
 const buttons = document.querySelectorAll('button');
 const boxContainers = document.querySelectorAll('.box-containerEasy');
+const answerField = document.querySelector('.box1');
 
 const MAX_BOX = 5; //PALITAN KUNG ILANG BOX
 const MAX_CONTAINER = 6; //PALITAN KUNG ILANG CONTAINER
@@ -68,15 +69,19 @@ function buttonHandler(event) {
               });
             numberOfTries++;
             if (evaluateAnswer(Answer) == 1){
+
+                // Gawing Green Lahat kasi tama
                const opt = "1234567890+-/*"
                for(let i = 0; i<MAX_BOX;i++){
                 currentBox = boxContainers[currentContainer].children[i];
                 currentBox.style.backgroundColor = "#3AA346";
+                currentBox.style.border = "2px solid white"
                }
                for(let x = currentContainer+1; x<MAX_CONTAINER;x++){
                    for (let y = 0; y<MAX_BOX; y++){
                     currentBox = boxContainers[x].children[y];
                     currentBox.style.backgroundColor = "#BBC6CD";
+                    currentBox.style.border = "2px solid white"
                    } 
                }
                for (let z = 0; z < answerArray.length ; z++){
@@ -93,10 +98,9 @@ function buttonHandler(event) {
                   })
                 myModal.toggle()
                 $("#streak").text(streak)
-                if( !$('#myModal').is(':visible')){
+                $('.continuegame').click(function(){
                     continueGame();
-                    
-                }
+                });
             }
             else if(evaluateAnswer(Answer)== -1) {
                 var myModal = new bootstrap.Modal(document.getElementById('errorModal'),{
@@ -111,20 +115,26 @@ function buttonHandler(event) {
                 for (let i = 0 ; i < answerArray.length ; i++){
                     currentBox = boxContainers[currentContainer].children[i];
                    
+                    // Green
                     if(expressionArray[i] == answerArray[i] ){
                         currentBox.style.backgroundColor = "#3AA346";
                         document.getElementById(answerArray[i]).style.background = "#3AA346";
                     }
                     
+                    // Yellow
                     else if(expressionArray.includes(answerArray[i])){
                         currentBox.style.backgroundColor = "#FFC30B";
                         document.getElementById(answerArray[i]).style.background = "#FFC30B";  
                     }
+
+                    // Red
                     else{
                         currentBox.style.backgroundColor = "#e25252";
                         document.getElementById(answerArray[i]).style.background = "#e25252"; 
-                    }                   
+                    }
+                    currentBox.style.border = "2px solid white"
                 }
+
                 Answer = '';
                 currentContainer++;
                 inputIndex = 0;
@@ -187,7 +197,8 @@ function continueGame(){
         for (let x = 0; x < MAX_BOX; x++){
             currentBox = boxContainers[i].children[x];
             currentBox.children[0].textContent = '';
-            currentBox.style.backgroundColor = '#FFFFFF';
+            currentBox.style.backgroundColor = '';
+            currentBox.style.border = "2px dashed white"
         }
     }
     for (let z = 0 ; z < opt.length ; z++){
