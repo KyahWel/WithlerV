@@ -7,7 +7,7 @@ $(document).ready(function () {
     console.log(expression)
     $(".easyDiff").css("background-color","#6c7c7c");
     $("#equals").text(eval(expression));
-    
+
 });
 
 
@@ -163,17 +163,31 @@ function buttonHandler(event) {
     }
 }
  
+function generateString(length) {
+    const characters = '+*/-0123456789';
+    let result = '';
+    const charactersLength = characters.length;
+    for ( let i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    
+    return result;
+}
+
 
 function generateExpression() {
 
-    let operations = new RandExp(/[+*/-]/).gen()
-   
-    expression = new RandExp('([1-9])((['+operations+'])([1-9])(['+operations+'])([1-9])|([0-9])([+*/-])([1-9])([0-9]))').gen();
-    
+    expression = generateString(5);
+    const pattern = /^([1-9](?<op>[+-/*])[1-9]\k<op>[1-9])|([1-9]\d[+-/*][1-9]\d)$/gm;
+    while(!expression.match(pattern)){
+        expression = generateString(5);   
+    }
     if (eval(expression) % 1 != 0 || eval(expression) <= 0 ||  eval(expression) > 50)
         generateExpression()
-    else
-        return expression
+    else{
+        return expression;
+    }
+    
 }
 
 function evaluateAnswer(AnswerExp) {
