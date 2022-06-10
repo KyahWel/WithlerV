@@ -2,7 +2,7 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 let width, height;
 let forces = [], particles = [];
-let nParticles = 250;
+let nParticles = 1;
 let p = 0;
 
 noise.seed(Math.random());
@@ -131,7 +131,7 @@ const launchParticle = () => {
 }
 
 const updateEmitter = () => {
-  emitter.lerp(mouse, 0.2);
+  emitter.lerp(mouse, 1); //0.2 originally
 }
 
 const animate = (t) => {

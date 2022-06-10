@@ -18,6 +18,7 @@
 
 <body id="fader" onload="fadein()">
     <div class="cursor"></div>
+    <div class="nocursor"></div>
     <section class="headervideo">
         <img class="solidblack" src="./images/solidblack.jpg">
         <video autoplay loop class="video-background" muted plays-inline data-value="-9">
@@ -152,24 +153,24 @@
 
         <div class="flex-row centered buttons">
 
-            <button id="1" class="buttonDesign"><span></span><span></span><span></span><span></span>1</button>
-            <button id="2" class="buttonDesign"><span></span><span></span><span></span><span></span>2</button>
-            <button id="3" class="buttonDesign"><span></span><span></span><span></span><span></span>3</button>
-            <button id="4" class="buttonDesign"><span></span><span></span><span></span><span></span>4</button>
-            <button id="5" class="buttonDesign"><span></span><span></span><span></span><span></span>5</button>
-            <button id="6" class="buttonDesign"><span></span><span></span><span></span><span></span>6</button>
-            <button id="7" class="buttonDesign"><span></span><span></span><span></span><span></span>7</button>
-            <button id="8" class="buttonDesign"><span></span><span></span><span></span><span></span>8</button>
-            <button id="9" class="buttonDesign"><span></span><span></span><span></span><span></span>9</button>
-            <button id="0" class="buttonDesign"><span></span><span></span><span></span><span></span>0</button>
+            <button id="1" class="numbutton">1</button>
+            <button id="2" class="numbutton">2</button>
+            <button id="3" class="numbutton">3</button>
+            <button id="4" class="numbutton">4</button>
+            <button id="5" class="numbutton">5</button>
+            <button id="6" class="numbutton">6</button>
+            <button id="7" class="numbutton">7</button>
+            <button id="8" class="numbutton">8</button>
+            <button id="9" class="numbutton">9</button>
 
+        
             <div class="text-center">
-                <button id="+" class="buttonDesign"><span></span><span></span><span></span><span></span>+</button>
-                <button id="-" class="buttonDesign"><span></span><span></span><span></span><span></span>-</button>
-                <button id="*" class="buttonDesign"><span></span><span></span><span></span><span></span>*</button>
-                <button id="/" class="buttonDesign"><span></span><span></span><span></span><span></span>/</button>
-                <button class="buttonDesignFunc" id="delete-btn">Delete</button>
-                <button class="buttonDesignFunc" id="enter-btn" disabled>Enter</button>
+                <button class="delbutton" id="delete-btn">Delete</button>
+                <button id="+" class="numbutton">+</button>
+                <button id="-" class="numbutton">-</button>
+                <button id="*" class="numbutton">*</button>
+                <button id="/" class="numbutton">/</button>
+                <button class="enterbutton" id="enter-btn" disabled>Enter</button>
             </div>
 
         </div>
@@ -238,7 +239,7 @@
 
                 <div class="modal-body">
                     <h2 class="modal-title" id="exampleModalLabel">Great Job!!</h2>
-                    Tangina mo ang galing mo !! <br>
+                    Good job! <br>
                     Current Streak: <span id="streak"></span>
                 </div>
                 <div class="modal-footer">
@@ -309,7 +310,7 @@
 
         document.addEventListener("mousemove", (e) => {
             var elem = document.createElement('div');
-            elem.setAttribute('class', 'trail');
+            // elem.setAttribute('class', 'trail');
             elem.setAttribute('style', `left: ${e.clientX - 0}px; top: ${e.clientY -0}px;`);
 
             elem.onanimationend = () => {
