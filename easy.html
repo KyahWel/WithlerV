@@ -30,14 +30,6 @@
     <div class="container d-flex flex-column justify-content-center">
         <div class="flex-row text-center centered">
             <h3> Guess the generated general equation! </h3>
-
-            <!-- Modals -->
-            <!-- <button id="help" class="buttonDesignHelp" data-bs-toggle="modal" data-bs-target="#helpModal">
-                <i class="fas fa-question"></i>
-            </button>
-            <button class="buttonDesignSettings" type="button" data-bs-toggle="modal" data-bs-target="#settingsModal">
-                <i class="fa fa-cog"></i></button> -->
-            <!-- End of Modals -->
             <h5> Find the hidden calculation that is equal to <span id="equals"></span>.</h5>
 
             <div class="answerfield">
@@ -153,6 +145,9 @@
 
         <div class="flex-row centered buttons">
 
+            <button class="buttonDesignSettings" type="button" data-bs-toggle="modal" data-bs-target="#testmodal">
+                <i class="fa fa-cog"></i></button>
+
             <button id="1" class="numbutton">1</button>
             <button id="2" class="numbutton">2</button>
             <button id="3" class="numbutton">3</button>
@@ -163,7 +158,10 @@
             <button id="8" class="numbutton">8</button>
             <button id="9" class="numbutton">9</button>
 
-        
+            <button id="help" class="buttonDesignHelp" data-bs-toggle="modal" data-bs-target="#helpModal">
+                <i class="fas fa-question"></i>
+            </button>
+
             <div class="text-center">
                 <button class="delbutton" id="delete-btn">Delete</button>
                 <button id="+" class="numbutton">+</button>
@@ -172,7 +170,66 @@
                 <button id="/" class="numbutton">/</button>
                 <button class="enterbutton" id="enter-btn" disabled>Enter</button>
             </div>
+        </div>
+    </div>
 
+    <!-- testmodal -->
+
+    <div class="modal fade" tabindex="-1" id="testmodal">
+        <div class="modal-dialog center">
+            <div class="modal-content testModalSize">
+                <div class="modal-header testheader">
+                    <p class="modal-title">Game Settings</p>
+                </div>
+                <div class="modal-body testbody">
+                    <div>
+                        <div style="display:inline-block; vertical-align:middle ">
+                            <img src="./images/easydiff.png" alt="img" />
+                        </div>
+                        <div style="display:inline-block; margin-left: 5px; vertical-align:middle">
+                            <h4> Easy </h4>
+                            <p class="easydesc"> Consists of numbers 1-9 and 4 arithmetic operations. <br> Recommended
+                                for beginners.</p>
+                        </div>
+                        <div style="display:inline-block; vertical-align:middle ">
+                            <button type="button" class="btn btn-primary m-2 easyDiff">Easy Mode</button><br>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="display:inline-block; vertical-align:middle">
+                            <img src="./images/normaldiff.png" alt="img" />
+                        </div>
+                        <div style="display:inline-block; margin-left: 5px; vertical-align:middle">
+                            <h4> Normal </h4>
+                            <p class="easydesc"> Consists of numbers 1-9 and 4 arithmetic operations. <br> Recommended
+                                for beginners.</p>
+                        </div>
+                        <div style="display:inline-block; vertical-align:middle ">
+                            <button type="button" class="btn btn-primary m-2 normalDiff">Normal Mode</button><br>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="display:inline-block; vertical-align:middle">
+                            <img src="./images/harddiff.png" alt="img" />
+                        </div>
+                        <div style="display:inline-block; margin-left: 5px; vertical-align:middle">
+                            <h4> Hard </h4>
+                            <p class="easydesc"> Consists of numbers 1-9 and 4 arithmetic operations. <br> Recommended
+                                for beginners.</p>
+                        </div>
+                        <div style="display:inline-block; vertical-align:middle ">
+                            <button type="button" class="btn btn-primary m-2 hardDiff">Hard Mode</button><br>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -243,7 +300,8 @@
                     Current Streak: <span id="streak"></span>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="close" class="btn btn-success continuegame" data-bs-dismiss="modal">Continue</button>
+                    <button type="button" id="close" class="btn btn-success continuegame"
+                        data-bs-dismiss="modal">Continue</button>
                 </div>
             </div>
         </div>
@@ -267,11 +325,10 @@
 
     <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
         <div class="modal-dialog center">
-            <div class="modal-content">
-
-                <div class="modal-body">
-                    <h2 class="modal-title">Game Settings:</h2>
-                    Game Difficulty <br>
+            <div class="modal-content rounded-5">
+                <div class="settings-modal-body">
+                    <h2 class="settings-modal-title">Game Settings</h2>
+                    <p class="settings-modal-desc"> Choose your preferred difficulty. </p><br>
                     <button type="button" class="btn btn-primary m-2 easyDiff">Easy Mode</button><br>
                     <button type="button" class="btn btn-primary m-2 normalDiff">Normal Mode</button><br>
                     <button type="button" class="btn btn-primary m-2 hardDiff">Hard Mode</button>
