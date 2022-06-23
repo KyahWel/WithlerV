@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guess the math equation!</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/hard.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,19 +15,15 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 </head>
 
-<body>
+<body id="fader" onload="fadein()">
+    <div class="cursor"></div>
+    <div class="nocursor"></div>
     <div class="container d-flex flex-column justify-content-center">
         <div class="flex-row text-center centered">
-            <h3><button id="help"class="buttonDesignHelp" data-bs-toggle="modal" data-bs-target="#helpModal">
-                <i class="fas fa-question"></i>
-            </button> 
-                Guess the math equation!
-               
-                <button class="buttonDesignSettings" type="button" data-bs-toggle="modal" data-bs-target="#settingsModal">
-                    <i class="fa fa-cog"></i></button>
-            </h3>
-            <h5> Find the hidden calculation that is equal to <span id="equals"> </span></h5>
+            <h3> Guess the generated general equation! </h3>
+            <h5> Find the hidden calculation that is equal to <span id="equals"></span>.</h5>
             
+        <div class="answerfield">
             <div class="box-containerHard centered">
                 <div class="box">
                     <span></span>
@@ -189,33 +185,40 @@
                     <span></span>
                 </div>
             </div>
-
+        </div>
             
         </div>
         
         <div class="flex-row centered ">
             
-            <button id="1" class="buttonDesign">1</button>
-            <button id="2" class="buttonDesign">2</button>
-            <button id="3" class="buttonDesign">3</button>
-            <button id="4" class="buttonDesign">4</button>
-            <button id="5" class="buttonDesign">5</button>
-            <button id="6" class="buttonDesign">6</button>
-            <button id="7" class="buttonDesign">7</button>
-            <button id="8" class="buttonDesign">8</button>
-            <button id="9" class="buttonDesign">9</button>
-            <button id="0" class="buttonDesign">0</button>
+            <button class="buttonDesignSettings" type="button" data-bs-toggle="modal" data-bs-target="#testmodal">
+                <i class="fa fa-cog"></i></button>
+            
+            <button id="1" class="numbutton">1</button>
+            <button id="2" class="numbutton">2</button>
+            <button id="3" class="numbutton">3</button>
+            <button id="4" class="numbutton">4</button>
+            <button id="5" class="numbutton">5</button>
+            <button id="6" class="numbutton">6</button>
+            <button id="7" class="numbutton">7</button>
+            <button id="8" class="numbutton">8</button>
+            <button id="9" class="numbutton">9</button>
+            <button id="0" class="numbutton">0</button>
+
+            <button id="help" class="buttonDesignHelp" data-bs-toggle="modal" data-bs-target="#helpModal">
+                <i class="fas fa-question"></i>
+            </button>
+
             
            <div class="text-center">
-                <button id="+" class="buttonDesign">+</button>
-                <button id="-" class="buttonDesign">-</button>
-                <button id="*" class="buttonDesign">*</button>
-                <button id="/" class="buttonDesign">/</button>
-                <button id="(" class="buttonDesign">(</button>
-                <button id=")" class="buttonDesign">)</button>
-                <button class="buttonDesignFunc" id="delete-btn">Delete</button>
-
-                <button class="buttonDesignFunc" id="enter-btn" disabled>Enter</button>
+            <button class="delbutton" id="delete-btn">Delete</button>
+                <button id="+" class="numbutton">+</button>
+                <button id="-" class="numbutton">-</button>
+                <button id="*" class="numbutton">*</button>
+                <button id="/" class="numbutton">/</button>
+                <button id="(" class="numbutton">(</button>
+                <button id=")" class="numbutton">)</button>
+            <button class="enterbutton" id="enter-btn" disabled>Enter</button>
                 <!-- <button class="buttonDesignFunc" id="reset-btn">Reset</button> -->
             </div>
 
@@ -328,6 +331,55 @@
     <script src="https://github.com/fent/randexp.js/releases/download/v0.4.3/randexp.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/hard.js"></script>
+    <script type="text/javascript">
+        // Fade In Effect
+        function fadein() {
+            const target = document.getElementById("fader");
+
+            function fadeinEvent() {
+                target.style.opacity = '100';
+            }
+            target.addEventListener('mouseover', fadeinEvent);
+            setTimeout(function () {
+                target.removeEventListener('mouseover', fadeinEvent)
+            }, 10000);
+        }
+
+        const cursor = document.querySelector(".cursor");
+        document.body.style.cursor = 'none';
+        var body = document.body;
+
+        document.addEventListener("mousemove", (e) => {
+            var elem = document.createElement('div');
+            // elem.setAttribute('class', 'trail');
+            elem.setAttribute('style', `left: ${e.clientX - 0}px; top: ${e.clientY -0}px;`);
+
+            elem.onanimationend = () => {
+                elem.remove();
+            }
+            let x = e.pageX;
+            let y = e.pageY;
+
+            cursor.style.top = y + "px";
+            cursor.style.left = x + "px";
+            cursor.style.display = "block";
+
+            body.insertAdjacentElement('beforeend', elem);
+        });
+
+        //click animation
+        function clickEffect(e) {
+            var d = document.createElement("div");
+            d.className = "clickEffect";
+            d.style.top = e.clientY + "px";
+            d.style.left = e.clientX + "px";
+            document.body.appendChild(d);
+            d.addEventListener('animationend', function () {
+                d.parentElement.removeChild(d);
+            }.bind(this));
+        }
+        document.addEventListener('click', clickEffect);
+    </script>
 </body>
 
 </html>

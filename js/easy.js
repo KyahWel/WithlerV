@@ -217,7 +217,7 @@ function continueGame(){
     }
     for (let z = 0 ; z < opt.length ; z++){
         document.getElementById(opt[z]).disabled = false;
-        document.getElementById(opt[z]).style.background= "#768d87";
+        document.getElementById(opt[z]).style.background= "#FFF0F0";
     }
     inputIndex = 0;
     currentContainer = 0;
