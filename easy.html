@@ -16,13 +16,13 @@
 
 </head>
 
-<body id="fader" onload="fadein()">
+<body id="fader">
     <div class="cursor"></div>
     <div class="nocursor"></div>
     <section class="headervideo">
 
         <img class="solidblack" src="./images/solidblack.jpg">
-        <img class="image-background" src="./images/easyback.png">
+        <img id="image-background" src="./images/easyback.jpg">
 
         <div class="line line-1">
             <div class="wave wave1" style="background-image: url(./images/1.png)"></div>
@@ -156,7 +156,7 @@
 
         <div class="flex-row centered buttons">
 
-            <button class="buttonDesignSettings" type="button" data-bs-toggle="modal" data-bs-target="#testmodal">
+            <button class="buttonDesignSettings" type="button" data-bs-toggle="modal" data-bs-target="#newSettingmodal">
                 <i class="fa fa-cog"></i></button>
 
             <button id="1" class="numbutton">1</button>
@@ -187,59 +187,58 @@
 
     <!-- testmodal -->
 
-    <div class="modal fade" tabindex="-1" id="testmodal">
+    <div class="modal fade" tabindex="-1" id="newSettingmodal">
         <div class="modal-dialog center">
-            <div class="modal-content testModalSize">
+            <div class="modal-content testModalSize" style="background-color: #d3d3d3;">
                 <div class="modal-header testheader">
                     <p class="modal-title">Game Settings</p>
                 </div>
                 <div class="modal-body testbody">
                     <div>
-                        <div style="display:inline-block; vertical-align:middle ">
-                            <img src="./images/easydiff.png" alt="img" />
+                        <div style="display:inline-block; vertical-align:middle; margin-right: 10px; margin-left: 7px;">
+                            <img src="./images/easydiff.png" alt="img" style="width: 4.25rem; height: 4.25rem;" />
                         </div>
                         <div style="display:inline-block; margin-left: 5px; vertical-align:middle">
                             <h4> Easy </h4>
-                            <p class="easydesc"> Consists of numbers 1-9 and 4 arithmetic operations. <br> Recommended
+                            <p class="easydesc"> Consists of 5 boxes and 4 arithmetic operations. <br> Recommended
                                 for beginners.</p>
                         </div>
                         <div style="display:inline-block; vertical-align:middle ">
-                            <button type="button" class="btn btn-primary m-2 easyDiff">Easy Mode</button><br>
+                            <button type="button" class="btn btn-primary m-4 easyDiff">Easy Mode</button><br>
                         </div>
                     </div>
 
                     <div>
-                        <div style="display:inline-block; vertical-align:middle">
-                            <img src="./images/normaldiff.png" alt="img" />
+                        <div style="display:inline-block; vertical-align:middle; margin-right: 10px; margin-left: 7px;">
+                            <img src="./images/normaldiff.png" alt="img" style="width: 4.25rem; height: 4.25rem;" />
                         </div>
                         <div style="display:inline-block; margin-left: 5px; vertical-align:middle">
                             <h4> Normal </h4>
-                            <p class="easydesc"> Consists of numbers 1-9 and 4 arithmetic operations. <br> Recommended
-                                for beginners.</p>
+                            <p class="easydesc"> Consists of 6 boxes and 4 arithmetic operations. <br> Recommended
+                                for intermediate players.</p>
                         </div>
                         <div style="display:inline-block; vertical-align:middle ">
-                            <button type="button" class="btn btn-primary m-2 normalDiff">Normal Mode</button><br>
+                            <button type="button" class="btn btn-warning m-4 normalDiff">Normal Mode</button><br>
                         </div>
                     </div>
 
                     <div>
-                        <div style="display:inline-block; vertical-align:middle">
-                            <img src="./images/harddiff.png" alt="img" />
+                        <div style="display:inline-block; vertical-align:middle; margin-right: 10px; margin-left: 7px;">
+                            <img src="./images/harddiff.png" alt="img" style="width: 4.25rem; height: 4.25rem;" />
                         </div>
                         <div style="display:inline-block; margin-left: 5px; vertical-align:middle">
                             <h4> Hard </h4>
-                            <p class="easydesc"> Consists of numbers 1-9 and 4 arithmetic operations. <br> Recommended
-                                for beginners.</p>
+                            <p class="easydesc"> Consists of 7 boxes and 6 arithmetic operations. <br> Recommended
+                                for advanced players.</p>
                         </div>
                         <div style="display:inline-block; vertical-align:middle ">
-                            <button type="button" class="btn btn-primary m-2 hardDiff">Hard Mode</button><br>
+                            <button type="button" class="btn btn-danger m-4 hardDiff">Hard Mode</button><br>
                         </div>
                     </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
@@ -287,7 +286,30 @@
         </div>
     </div>
 
-    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal fade" tabindex="-1" id="errorModal" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog center">
+            <div class="modal-content" style="background-color: #d3d3d3;">
+                <div class="modal-header testheader">
+                    <p class="modal-title">Math error!</p>
+                </div>
+                <div class="modal-body testbody">
+                    <div>
+                        <div style="text-align: center; margin-top: 1rem;">
+                            <img src="./images/warning.png" alt="img" style="width: 25%; height: 25%"/>
+                        </div>
+                        <div style="text-align: center; font-family: Montserrat; font-size: 14px; margin-top: 1rem;">
+                            <p> Double check your expression, the answer should be <span id="answer"></span>.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Got it!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
         <div class="modal-dialog center">
             <div class="modal-content">
 
@@ -300,9 +322,34 @@
                 </div>
             </div>
         </div>
+    </div> -->
+
+    <div class="modal fade" tabindex="-1" id="correctModal" aria-labelledby="correctModalLabel" aria-hidden="true">
+        <div class="modal-dialog center">
+            <div class="modal-content" style="background-color: #d3d3d3;">
+                <div class="modal-header testheader">
+                    <p class="modal-title">Correct answer!</p>
+                </div>
+                <div class="modal-body testbody">
+                    <div>
+                        <div style="text-align: center; margin-top: 1rem;">
+                            <img src="./images/correct.png" alt="img" style="width: 15%; height: 15%"/>
+                        </div>
+                        <div style="text-align: center; font-family: Montserrat; font-size: 14px; margin-top: 1rem;">
+                            <p> Good job! You've found the correct answer! <br> 
+                                Current Streak: <span id="streak"></span> </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="close" class="btn btn-success continuegame"
+                        data-bs-dismiss="modal">Continue</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="modal fade" id="correctModal" tabindex="-1" aria-labelledby="correctModalLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="correctModal" tabindex="-1" aria-labelledby="correctModalLabel" aria-hidden="true">
         <div class="modal-dialog center">
             <div class="modal-content">
 
@@ -317,9 +364,33 @@
                 </div>
             </div>
         </div>
+    </div> -->
+
+    <div class="modal fade" tabindex="-1" id="failModal" aria-labelledby="failModalLabel" aria-hidden="true">
+        <div class="modal-dialog center">
+            <div class="modal-content" style="background-color: #d3d3d3;">
+                <div class="modal-header testheader">
+                    <p class="modal-title">You've failed.</p>
+                </div>
+                <div class="modal-body testbody">
+                    <div>
+                        <div style="text-align: center; margin-top: 1rem;">
+                            <img src="./images/error.png" alt="img" style="width: 15%; height: 15%" />
+                        </div>
+                        <div style="text-align: center; font-family: Montserrat; font-size: 14px; margin-top: 1rem;">
+                            <p> You've ran out of chances. <br> 
+                                Correct Answer: <span id="correct_ans"></span> </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="resetGame" class="btn btn-success" data-bs-dismiss="modal">Try Again</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="modal fade" id="failModal" tabindex="-1" aria-labelledby="failModalLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="failModal" tabindex="-1" aria-labelledby="failModalLabel" aria-hidden="true">
         <div class="modal-dialog center">
             <div class="modal-content">
 
@@ -333,9 +404,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
         <div class="modal-dialog center">
             <div class="modal-content rounded-5">
                 <div class="settings-modal-body">
@@ -350,7 +421,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
@@ -358,21 +429,7 @@
     <script src="https://github.com/fent/randexp.js/releases/download/v0.4.3/randexp.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/easy.js"></script>
-
     <script type="text/javascript">
-        // Fade In Effect
-        function fadein() {
-            const target = document.getElementById("fader");
-
-            function fadeinEvent() {
-                target.style.opacity = '100';
-            }
-            target.addEventListener('mouseover', fadeinEvent);
-            setTimeout(function () {
-                target.removeEventListener('mouseover', fadeinEvent)
-            }, 10000);
-        }
-
         const cursor = document.querySelector(".cursor");
         document.body.style.cursor = 'none';
         var body = document.body;
@@ -408,6 +465,17 @@
         }
         document.addEventListener('click', clickEffect);
     </script>
-</body>
 
+    <!-- <script type="text/javascript">
+        var body = document.getElementById('fader')
+        var image = document.getElementById('image-background')
+    
+         image.addEventListener('mousemove', function(e) {
+         var valueX = (e.pageX * -1 / 12);
+         var valueY = (e.pageY * -1 / 12);
+         image.style.left = valueX + "px"
+         image.style.top = valueY + "px"
+         });
+    </script> -->
+</body>
 </html>

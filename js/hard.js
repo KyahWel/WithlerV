@@ -7,6 +7,7 @@ $(document).ready(function () {
     console.log(expression)
     $(".hardDiff").css("background-color","#6c7c7c")
     $("#equals").text(eval(expression));
+    $("#fader").css("opacity", 100);
 });
 
 
@@ -68,11 +69,13 @@ function buttonHandler(event) {
                for(let i = 0; i<MAX_BOX;i++){
                 currentBox = boxContainers[currentContainer].children[i];
                 currentBox.style.backgroundColor = "#3AA346";
+                currentBox.style.border = "2px solid white";
                }
                for(let x = currentContainer+1; x<MAX_CONTAINER;x++){
                    for (let y = 0; y<MAX_BOX; y++){
                     currentBox = boxContainers[x].children[y];
                     currentBox.style.backgroundColor = "#BBC6CD";
+                    currentBox.style.border = "2px solid white";
                    } 
                }
                for (let z = 0; z < answerArray.length ; z++){
@@ -120,6 +123,7 @@ function buttonHandler(event) {
                         currentBox.style.backgroundColor = "#e25252";
                         document.getElementById(answerArray[i]).style.background = "#e25252"; 
                     }                   
+                    currentBox.style.border = "2px solid white";
                 }
                 Answer = '';
                 currentContainer++;
@@ -186,17 +190,18 @@ function evaluateAnswer(AnswerExp) {
 function continueGame(){
 
     Answer = "";
-    const opt = "1234567890+-/*"
+    const opt = "1234567890+-/*()"
     for (let i = 0; i < MAX_CONTAINER; i++){
         for (let x = 0; x < MAX_BOX; x++){
             currentBox = boxContainers[i].children[x];
             currentBox.children[0].textContent = '';
-            currentBox.style.backgroundColor = '#FFFFFF';
+            currentBox.style.backgroundColor = '';
+            currentBox.style.border = "2px dashed white"
         }
     }
     for (let z = 0 ; z < opt.length ; z++){
         document.getElementById(opt[z]).disabled = false;
-        document.getElementById(opt[z]).style.background= "#768d87";
+        document.getElementById(opt[z]).style.background= "#FFF0F0";
     }
     inputIndex = 0;
     currentContainer = 0;

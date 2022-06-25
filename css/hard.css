@@ -438,10 +438,10 @@
   
   .headervideo {
     height: 100vh;
-    background-color: rgba(255, 0, 0, 0.596) !important;
+    overflow: hidden;
   }
   
-  .video-background {
+  #image-background {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -460,7 +460,7 @@
     min-height: 100%;
     width: auto;
     height: auto;
-    opacity: 0.90;
+    opacity: 0.80;
     z-index: -1;
   }
   
@@ -560,5 +560,86 @@
       transform: scale(0) translateY(150px);
       opacity: 0;
       filter: hue-rotate(360deg);
+    }
+  }
+  
+  /* Test Modal */
+
+.testModalSize{
+  width: 41rem !important;
+  right: 4rem;
+}
+
+.testheader{
+  height: 1rem;
+  background-color: #000000;
+  background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
+}
+
+.testheader p{
+  margin: 0;
+  color: white;
+  font-family: Montserrat;
+}
+
+p .easydesc{
+  margin-top: -5px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+  /* Line Wave */
+  .line{
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+  
+  }
+  
+  .line-1{
+    opacity: 0.5;
+  }
+  
+  .line-2{
+    opacity: 0.7;
+  }
+  
+  
+  .wave{
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat no-repeat;
+    background-positioN: 0 bottom;
+    transform-origin: center bottom;
+  }
+  
+  .wave1{
+    -webkit-background-size: 50% 80px;
+    background-size: 50% 80px;
+  }
+  
+  .wave2{
+    -webkit-background-size: 50% 100px;
+    background-size: 50% 100px;
+    animation: animate 12s linear infinite;
+  }
+  
+  .wave3{
+    -webkit-background-size: 50% 80px;
+    background-size: 50% 80px;
+    animation: animate 18s linear infinite;
+  }
+  
+  @keyframes animate{
+    0%{
+      transform: translateX(0) translateZ(0) scaleY(1);
+    }
+    50%{
+      transform: translateX(-25%) translateZ(0) scaleY(0.5);
+    }
+    100%{
+      transform: translateX(-50%) translateZ(0) scaleY(1);
     }
   }

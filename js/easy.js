@@ -7,7 +7,7 @@ $(document).ready(function () {
     console.log(expression)
     $(".easyDiff").css("background-color","#6c7c7c");
     $("#equals").text(eval(expression));
-
+    $("#fader").css("opacity", 100);
 });
 
 
@@ -26,6 +26,7 @@ const MAX_CONTAINER = 6; //PALITAN KUNG ILANG CONTAINER
 let currentContainer = 0;
 let inputIndex = 0;
 let streak = 0;
+let error = 0; //Paste
 var Answer = '';
 for (const button of buttons) {
     button.onclick = buttonHandler;
@@ -34,7 +35,7 @@ for (const button of buttons) {
 function buttonHandler(event) {
     if (currentContainer < MAX_CONTAINER) {
         var currentBox = boxContainers[currentContainer].children[inputIndex];
-        if (event.target.id !== '' && event.target.id !== 'delete-btn' && event.target.id !== 'enter-btn' && event.target.id !== 'reset-btn' && event.target.id !== 'help' && event.target.id !== 'close') {
+        if (event.target.id !== '' && event.target.id !== 'delete-btn' && event.target.id !== 'enter-btn' && event.target.id !== 'reset-btn' && event.target.id !== 'help' && event.target.id !== 'close' && event.target.id !== 'resetGame') {
             console.log(event.target.id) 
             if (inputIndex < MAX_BOX) {
                 if (inputIndex == -1) inputIndex = 0;
@@ -101,8 +102,10 @@ function buttonHandler(event) {
                 $('.continuegame').click(function(){
                     continueGame();
                 });
+                
             }
             else if(evaluateAnswer(Answer)== -1) {
+            
                 var myModal = new bootstrap.Modal(document.getElementById('errorModal'),{
                     keyboard: false
                   })
@@ -138,12 +141,20 @@ function buttonHandler(event) {
                 Answer = '';
                 currentContainer++;
                 inputIndex = 0;
-              
+
+                //Paste
+                error ++ ;
+                if(error == 6){
+                    var myModal = new bootstrap.Modal(document.getElementById('failModal'),{
+                        keyboard: false
+                      })
+                    myModal.toggle()
+                    $("#correct_ans").text(expression)
+                }
+                //Paste
             }
         }
-        else if (event.target.id === 'reset-btn') {
-            
-        }
+        
 
         if (currentContainer < MAX_CONTAINER) {
             if (boxContainers[currentContainer].lastElementChild.children[0].textContent !== '') {
@@ -155,11 +166,12 @@ function buttonHandler(event) {
 
             }
         }
-    } else if (currentContainer > MAX_CONTAINER - 1) {
+    } else if (error == 6) {
         var myModal = new bootstrap.Modal(document.getElementById('failModal'),{
             keyboard: false
           })
         myModal.toggle()
+        
     }
 }
  
@@ -226,6 +238,34 @@ function continueGame(){
     console.log(expression)
 
 }
+
+//Paste
+$('#resetGame').click(function(){
+    streak = 0;
+    error = 0;
+    inputIndex = 0;
+    currentContainer = 0;
+    Answer = "";
+    const opt = "1234567890+-/*"
+    for (let i = 0; i < MAX_CONTAINER; i++){
+        for (let x = 0; x < MAX_BOX; x++){
+            currentBox = boxContainers[i].children[x];
+            currentBox.children[0].textContent = '';
+            currentBox.style.backgroundColor = '';
+            currentBox.style.border = "2px dashed white"
+        }
+    }
+    for (let z = 0 ; z < opt.length ; z++){
+        document.getElementById(opt[z]).disabled = false;
+        document.getElementById(opt[z]).style.background= "#FFF0F0";
+    }
+    generateExpression();
+    $("#equals").text(eval(expression));
+    console.log(expression)
+});
+
+
+
 
 $('.normalDiff').click(function(){
     location.replace('normal.html')
