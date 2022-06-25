@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
 </head>
 
-<body id="fader" onload="fadein()">
+<body>
     <div class="nocursor"></div>
 
     <!-- Background Video Loop -->
@@ -39,9 +39,9 @@
 
         <div class="container">
             <div class="container">
-                <a href="#" onclick="goToEasy()"> &nbsp;Easy </a>
-                <a href="#" onclick="goToNormal()"> &nbsp;Normal </a>
-                <a href="#" onclick="goToHard()"> &nbsp;Hard </a>
+                <a href="easy.html" onclick="goToEasy()"> &nbsp;Easy </a>
+                <a href="normal.html" onclick="goToNormal()"> &nbsp;Normal </a>
+                <a href="hard.html" onclick="goToHard()"> &nbsp;Hard </a>
             </div>
         </div>
         </div>
@@ -51,9 +51,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
-
-    <script type="text/javascript" src="js/index.js"></script>
+    <script src="js/cursor.js"></script>
     <script type="text/javascript">
+ 
+
         const cursor = document.querySelector(".cursor");
         document.body.style.cursor = 'none';
         var body = document.body;
@@ -90,44 +91,8 @@
         }
         document.addEventListener('click', clickEffect);
 
-        // On index.html load
-        function fadein() {
-            const target = document.getElementById("fader");
-            function fadeinEvent() {
-                target.style.opacity = '100';
-            }
-            target.addEventListener('mouseover', fadeinEvent);
-            setTimeout(function () {
-                target.removeEventListener('mouseover', fadeinEvent)
-            }, 500);
-        }
-
-        function goToEasy() {
-            const target = document.getElementById("fader");
-            target.addEventListener('click', fadeEasy => target.style.opacity = '0');
-            setTimeout(function () {
-                location.replace("easy.html")
-            }, 2500);
-        };
-
-        function goToNormal() {
-            const target = document.getElementById("fader");
-            target.addEventListener('click', fadeEasy => target.style.opacity = '0');
-            setTimeout(function () {
-                location.replace("normal.html")
-            }, 2500);
-        };
-
-        function goToHard() {
-            const target = document.getElementById("fader");
-            target.addEventListener('click', fadeEasy => target.style.opacity = '0');
-            setTimeout(function () {
-                location.replace("hard.html")
-            }, 2500);
-        };
     </script>
-    <script src="js/cursor.js"></script>
-    <script src="js/index.js"></script>
+    
 </body>
 
 </html>

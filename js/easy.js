@@ -36,7 +36,7 @@ function buttonHandler(event) {
     if (currentContainer < MAX_CONTAINER) {
         var currentBox = boxContainers[currentContainer].children[inputIndex];
         if (event.target.id !== '' && event.target.id !== 'delete-btn' && event.target.id !== 'enter-btn' && event.target.id !== 'reset-btn' && event.target.id !== 'help' && event.target.id !== 'close' && event.target.id !== 'resetGame') {
-            console.log(event.target.id) 
+
             if (inputIndex < MAX_BOX) {
                 if (inputIndex == -1) inputIndex = 0;
                 currentBox.children[0].textContent = event.target.textContent;
@@ -46,6 +46,7 @@ function buttonHandler(event) {
                 if (inputIndex == 5) inputIndex = 5;
 
             }
+            
            
           
         } else if (event.target.id === 'delete-btn') {
@@ -95,7 +96,8 @@ function buttonHandler(event) {
                document.getElementById('enter-btn').disabled = true;
                streak++;
                var myModal = new bootstrap.Modal(document.getElementById('correctModal'),{
-                    keyboard: false
+                backdrop: 'static',
+                keyboard: false
                   })
                 myModal.toggle()
                 $("#streak").text(streak)
@@ -146,6 +148,7 @@ function buttonHandler(event) {
                 error ++ ;
                 if(error == 6){
                     var myModal = new bootstrap.Modal(document.getElementById('failModal'),{
+                        backdrop: 'static',
                         keyboard: false
                       })
                     myModal.toggle()
@@ -166,13 +169,7 @@ function buttonHandler(event) {
 
             }
         }
-    } else if (error == 6) {
-        var myModal = new bootstrap.Modal(document.getElementById('failModal'),{
-            keyboard: false
-          })
-        myModal.toggle()
-        
-    }
+    } 
 }
  
 function generateString(length) {
@@ -244,6 +241,7 @@ $('#resetGame').click(function(){
     streak = 0;
     error = 0;
     inputIndex = 0;
+    document.getElementById('enter-btn').disabled = true;
     currentContainer = 0;
     Answer = "";
     const opt = "1234567890+-/*"

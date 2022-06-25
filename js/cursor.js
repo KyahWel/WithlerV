@@ -1,5 +1,5 @@
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
+
+const ctx = document.getElementById('canvas').getContext("2d");
 let width, height;
 let forces = [], particles = [];
 let nParticles = 1;

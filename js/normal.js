@@ -23,6 +23,7 @@ let currentContainer = 0;
 let inputIndex = 0;
 let streak = 0;
 var Answer = '';
+let error = 0;
 for (const button of buttons) {
     button.onclick = buttonHandler;
 }
@@ -88,6 +89,7 @@ function buttonHandler(event) {
                document.getElementById('enter-btn').disabled = true;
                streak++;
                var myModal = new bootstrap.Modal(document.getElementById('correctModal'),{
+                    backdrop: 'static',
                     keyboard: false
                   })
                 myModal.toggle()
@@ -128,6 +130,15 @@ function buttonHandler(event) {
                 Answer = '';
                 currentContainer++;
                 inputIndex = 0;
+                error ++ ;
+                if(error == 6){
+                    var myModal = new bootstrap.Modal(document.getElementById('failModal'),{
+                        backdrop: 'static',
+                        keyboard: false
+                      })
+                    myModal.toggle()
+                    $("#correct_ans").text(expression)
+                }
               
             }
         }
@@ -145,11 +156,6 @@ function buttonHandler(event) {
 
             }
         }
-    } else if (currentContainer > MAX_CONTAINER - 1) {
-        var myModal = new bootstrap.Modal(document.getElementById('failModal'),{
-            keyboard: false
-          })
-        myModal.toggle()
     }
 }
  
@@ -203,6 +209,31 @@ function continueGame(){
     console.log(expression)
 
 }
+
+$('#resetGame').click(function(){
+    streak = 0;
+    error = 0;
+    inputIndex = 0;
+    document.getElementById('enter-btn').disabled = true;
+    currentContainer = 0;
+    Answer = "";
+    const opt = "1234567890+-/*"
+    for (let i = 0; i < MAX_CONTAINER; i++){
+        for (let x = 0; x < MAX_BOX; x++){
+            currentBox = boxContainers[i].children[x];
+            currentBox.children[0].textContent = '';
+            currentBox.style.backgroundColor = '';
+            currentBox.style.border = "2px dashed white"
+        }
+    }
+    for (let z = 0 ; z < opt.length ; z++){
+        document.getElementById(opt[z]).disabled = false;
+        document.getElementById(opt[z]).style.background= "#FFF0F0";
+    }
+    generateExpression();
+    $("#equals").text(eval(expression));
+    console.log(expression)
+});
 
 $('.easyDiff').click(function(){
     location.replace('easy.html')
