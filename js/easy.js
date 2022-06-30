@@ -115,6 +115,13 @@ function buttonHandler(event) {
                 $("#answer").text(eval(expression))
                 
             }
+            else if(evaluateAnswer(Answer)== null) {
+                var myModal = new bootstrap.Modal(document.getElementById('wrongExpressionModal'),{
+                    keyboard: false
+                  })
+                myModal.toggle()
+               
+            }
             else {
                
                 for (let i = 0 ; i < answerArray.length ; i++){
@@ -187,11 +194,11 @@ function generateString(length) {
 function generateExpression() {
 
     expression = generateString(5);
-    const pattern = /^([1-9](?<op>[+-/*])[1-9]\k<op>[1-9])|([1-9]\d[+-/*][1-9]\d)$/gm;
+    const pattern = /([1-9](?<op>[+-/*])[1-9]\k<op>[1-9])|([1-9]\d[+-/*][1-9]\d)/g;
     while(!expression.match(pattern)){
         expression = generateString(5);   
     }
-    if (eval(expression) % 1 != 0 || eval(expression) <= 0 ||  eval(expression) > 50)
+    if (eval(expression) % 1 != 0 || eval(expression) <= 0 ||  eval(expression) > 30)
         generateExpression()
     else{
         return expression;
@@ -200,15 +207,21 @@ function generateExpression() {
 }
 
 function evaluateAnswer(AnswerExp) {
-    const answerArray = AnswerExp.split("");
-    const expressionArray = expression.split("");
-    const containsAll = answerArray.every(element => {
-        return expressionArray.includes(element);
-      });
-    if(eval(AnswerExp) != eval(expression)) return -1 
-    else if(AnswerExp != expression && containsAll) return 1
-    else if (AnswerExp == expression) return 1
-    else return 0
+    const pattern =  /(\d([+-/*])\d([+-/*])\d)|(\d\d[+-/*]\d\d)/g;
+    if(!pattern.test(AnswerExp)){
+        return null
+    }
+    else {
+        const answerArray = AnswerExp.split("");
+        const expressionArray = expression.split("");
+        const containsAll = answerArray.every(element => {
+            return expressionArray.includes(element);
+        });
+        if(eval(AnswerExp) != eval(expression)) return -1 
+        else if(AnswerExp != expression && containsAll) return 1
+        else if (AnswerExp == expression) return 1
+        else return 0
+    }
   
 }
 
@@ -236,7 +249,7 @@ function continueGame(){
 
 }
 
-//Paste
+
 $('#resetGame').click(function(){
     streak = 0;
     error = 0;

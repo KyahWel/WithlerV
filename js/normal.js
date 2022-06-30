@@ -2,6 +2,10 @@ const inputValue = document.querySelector('input');
 var numberOfTries = 0;
 var expression;
 
+
+
+
+
 $(document).ready(function () {
     generateExpression()
     console.log(expression)
@@ -107,6 +111,13 @@ function buttonHandler(event) {
                 $("#answer").text(eval(expression))
                 
             }
+            else if(evaluateAnswer(Answer)== null) {
+                var myModal = new bootstrap.Modal(document.getElementById('wrongExpressionModal'),{
+                    keyboard: false
+                  })
+                myModal.toggle()
+               
+            }
             else {
                
                 for (let i = 0 ; i < answerArray.length ; i++){
@@ -167,23 +178,29 @@ function generateExpression() {
         let setD =  '([1-9])([/+*-])([1-9])([/+*-])([1-9])([0-9])' // 2+2-31
         expression =  new RandExp(setA+'|'+setB+'|'+setC+'|'+setD).gen()
         
-        if (eval(expression) % 1 != 0 || eval(expression) <= 0 || eval(expression) > 150)
+        if (eval(expression) % 1 != 0 || eval(expression) <= 0 || eval(expression) > 70)
             generateExpression()
         else
             return expression
 }
 
 function evaluateAnswer(AnswerExp) {
-    const answerArray = AnswerExp.split("");
-    const expressionArray = expression.split("");
-    const containsAll = answerArray.every(element => {
-        return expressionArray.includes(element);
-      });
-    if(eval(AnswerExp) != eval(expression)) return -1 
-    else if(AnswerExp != expression && containsAll) return 1
-    else if (AnswerExp == expression) return 1
-    else return 0
-  
+    const pattern =  /\d(\d\d|([/+*-])\d|\d([/+*-]))(\d|([/+*-]))(\d|([/+*-]))\d/g;
+    if(!pattern.test(AnswerExp)){
+        return null
+    }
+    else {
+        const answerArray = AnswerExp.split("");
+        const expressionArray = expression.split("");
+        const containsAll = answerArray.every(element => {
+            return expressionArray.includes(element);
+        });
+        if(eval(AnswerExp) != eval(expression)) return -1 
+        else if(AnswerExp != expression && containsAll) return 1
+        else if (AnswerExp == expression) return 1
+        else return 0
+    }
+    
 }
 
 function continueGame(){
